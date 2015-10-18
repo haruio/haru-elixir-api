@@ -24,4 +24,10 @@ defmodule HaruElixirApi.Router do
     put "/classes/:classname/:id", WriteController, :update_entity
     delete "/classes/:classname/:id", WriteController, :delete_entity
     delete "/classes/:classname", WriteController, :delete_class
+
+    ## Config
+    post "/config", WriteController, :create_config
+    put "/config", WriteController, :update_config
+    delete "/config", WriteController, :delete_config
+
 end
