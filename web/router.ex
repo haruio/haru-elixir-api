@@ -34,4 +34,7 @@ defmodule HaruElixirApi.Router do
     post "/reiview/fetch", WriteController, :fetch_review
 
 
+    ## Push
+    post "/push", WriteController, :send_push
+
 end
