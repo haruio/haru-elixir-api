@@ -19,4 +19,9 @@ defmodule HaruElixirApi.Router do
     get "/", PageController, :index
   end
 
+    ## Entity
+    post "/classes/:classname", WriteController, :create_entity
+    put "/classes/:classname/:id", WriteController, :update_entity
+    delete "/classes/:classname/:id", WriteController, :delete_entity
+    delete "/classes/:classname", WriteController, :delete_class
 end
