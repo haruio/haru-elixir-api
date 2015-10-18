@@ -19,6 +19,9 @@ defmodule HaruElixirApi.Router do
     get "/", PageController, :index
   end
 
+  scope "/v2", HaruElixirApi do
+    pipe_through :api
+
     ## Entity
     post "/classes/:classname", WriteController, :create_entity
     put "/classes/:classname/:id", WriteController, :update_entity
@@ -39,4 +42,5 @@ defmodule HaruElixirApi.Router do
 
     ## Monetization
     post "/monetization", WriteController, :create_monetiztion
+  end
 end
