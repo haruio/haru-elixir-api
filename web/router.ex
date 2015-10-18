@@ -30,4 +30,8 @@ defmodule HaruElixirApi.Router do
     put "/config", WriteController, :update_config
     delete "/config", WriteController, :delete_config
 
+    ## Review crawler
+    post "/reiview/fetch", WriteController, :fetch_review
+
+
 end
