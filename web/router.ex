@@ -37,4 +37,6 @@ defmodule HaruElixirApi.Router do
     ## Push
     post "/push", WriteController, :send_push
 
+    ## Monetization
+    post "/monetization", WriteController, :create_monetiztion
 end
