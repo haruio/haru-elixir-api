@@ -38,7 +38,9 @@ defmodule HaruElixirApi.Mixfile do
      {:cowboy, "~> 1.0"},
      {:exredis, ">= 0.2.1"},
      {:mongo, "~> 0.5.2"},
-     {:amqp_client, "~> 3.5"}
+     {:amqp_client, "~> 3.5"},
+     {:gcm, "~> 1.0.0"},
+     {:apns, "~> 0.0.6"}
     ]
   end
 
