@@ -6,7 +6,7 @@ defmodule HaruStore do
   defp poolboy_config do
     [
       {:name, {:local, pool_name}},
-      {:worker_module, HaruStore.Proxy},
+      {:worker_module, HaruStore.Group},
       {:size, 5},
       {:max_overflow, 10}
     ]
@@ -19,8 +19,7 @@ defmodule HaruStore do
     children = [
       :poolboy.child_spec(pool_name(), poolboy_config(), [])
     ]
-
-    opts = [strategy: :one_for_one, name: HaruStore.Proxy]
+    opts = [strategy: :one_for_one, name: HaruStore.Group]
 
     Supervisor.start_link(children, opts)
   end

@@ -1,29 +1,17 @@
 defmodule HaruStore.Proxy do
-  use GenServer
-  alias HaruStore.Store.Mongo
-  alias HaruStore.Store.Redis
-  alias HaruStore.Store.MySql
+  alias HaruStore.Group
 
-  ## Public API
-  def start_link(opts \\ []) do
-    GenServer.start_link(__MODULE__, [], opts)
+  def cmd(store_type, opts, cmd, data \\ []) do
+    opts[:via]
+    |> get_store(store_type)
+    |> call_cmd(cmd, data)
   end
 
-  def insert(server, store_name, data) do
-    GenServer.cast(server, {:insert, store_name, data})
+  defp get_store(pool_name, store_type) do
+    pool_name
+    |> :poolboy.checkout
+    |> Group.get(store_type)
   end
 
-  ## Callback API
-  def init(args) do
-    stores = HashDict.new
-    |> HashDict.put(:mongo, "mongo")
-    |> HashDict.put(:redis, "redis")
-    |> HashDict.put(:mysql, "mysql")
-    {:ok, stores}
-  end
-
-  def handle_cast({:insert, store_name, data}, stores) do
-    {:noreply, stores}
-  end
-
+  defp call_cmd({:ok, conn}, "ping", []), do: HaruStore.Store.Redis.ping(conn) 
 end
