@@ -4,7 +4,10 @@ defmodule HaruStore.StoreTest do
   alias HaruStore
 
   test "Start HaruStore application" do
-    HaruStore.start 1, 2
-    assert 1 == 1
+    HaruStore.start [],[] 
+
+    reply = HaruStore.Proxy.cmd  :redis, [via: HaruStore.pool_name()], "ping"
+
+    assert reply == "PONG" 
   end
 end
