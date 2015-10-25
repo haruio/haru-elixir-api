@@ -40,7 +40,8 @@ defmodule HaruElixirApi.Mixfile do
      {:mongo, "~> 0.5.2"},
      {:amqp_client, "~> 3.5"},
      {:gcm, "~> 1.0.0"},
-     {:apns, "~> 0.0.6"}
+     {:apns, "~> 0.0.6"},
+     {:poolboy, "~> 1.5"}
     ]
   end
 
